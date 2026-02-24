@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Caffeine Factory | Professional Barista Training</title>
+    <!-- Material Symbols -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Fonts: Inter as primary per instructions, but styling to look premium -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Theme Config -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3c2b25", // Espresso
+                        "primary-light": "#5D453C",
+                        "accent": "#C17F59", // Copper
+                        "background-light": "#f7f7f6", // Warm beige/off-white
+                        "background-dark": "#1b1817",
+                        "cream": "#F6F1EB",
+                        "sage": "#8da399",
+                        "charcoal": "#2E2E2E",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "2xl": "1.5rem", "full": "9999px" },
+                    backgroundImage: {
+                        'grain': "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22 opacity=%220.05%22/%3E%3C/svg%3E')",
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        /* Custom Styles for Premium Feel */
+        html,
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f7f6;
+            color: #1b1817;
+            overflow-x: hidden;
+            /* Hide scrollbar for cleaner touch design */
+            scrollbar-width: none;
+            /* Firefox */
+            -ms-overflow-style: none;
+            /* IE and Edge */
+        }
+
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        html::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Customize highlight color for all browsers */
+        ::selection {
+            background-color: #D4A373;
+            /* Background color of highlight */
+            color: #000000;
+            /* Text color of highlight */
+        }
+
+        /* Specific support for Firefox */
+        ::-moz-selection {
+            background-color: #D4A373;
+            color: #000000;
+        }
+
+
+        /* Glassmorphism */
+        .glass-nav {
+            background: rgba(247, 247, 246, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(60, 43, 37, 0.05);
+        }
+
+        /* Hero Overlay Gradient */
+        .hero-overlay {
+            background: linear-gradient(180deg, rgba(27, 24, 23, 0.6) 0%, rgba(60, 43, 37, 0.8) 100%);
+        }
+
+        /* Noise Texture Overlay */
+        .texture-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.15;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
+            mix-blend-mode: overlay;
+        }
+
+        /* Typography tweaks for editorial look */
+        .heading-premium {
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+        }
+
+        /* Ripple Effect */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            background-color: rgba(193, 127, 89, 0.4);
+            /* Coffee/Accent color */
+            pointer-events: none;
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* Aurora Text Effect */
+        .aurora-text {
+            background: linear-gradient(90deg,
+                    #C17F59 0%,
+                    #F6F1EB 25%,
+                    #D4A373 50%,
+                    #C17F59 75%,
+                    #F6F1EB 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            animation: aurora 4s linear infinite;
+        }
+
+        @keyframes aurora {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        /* Animated Shiny Text */
+        .shiny-container {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(4px);
+            transition: all 0.3s ease;
+        }
+
+        .shiny-container:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .shiny-text {
+            background: linear-gradient(120deg,
+                    rgba(255, 255, 255, 0.5) 40%,
+                    rgba(255, 255, 255, 1) 50%,
+                    rgba(255, 255, 255, 0.5) 60%);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            animation: shine 3s infinite linear;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        @keyframes shine {
+            0% {
+                background-position: 100%;
+            }
+
+            100% {
+                background-position: -100%;
+            }
+        }
+    </style>
+</head>
+
+<body class="antialiased bg-background-light text-primary">
+    <div class="texture-overlay"></div>
+    <!-- Sticky Navbar Container -->
+    <nav class="fixed top-0 w-full z-40 transition-all duration-300 flex flex-col group">
+        <!-- Top Info Bar -->
+        <div id="top-bar"
+            class="hidden lg:flex w-full bg-primary text-cream/90 text-[13px] py-1.5 px-6 lg:px-12 justify-center border-b border-[#5D453C]">
+            <div class="max-w-[1280px] w-full flex justify-between items-center">
+                <div class="flex items-center gap-5 mx-auto">
+                    <div
+                        class="flex items-center gap-1.5 hover:text-accent transition-colors cursor-pointer group/item">
+                        <span
+                            class="material-symbols-outlined text-[15px] group-hover/item:scale-110 transition-transform">call</span>
+                        <span class="font-medium tracking-wide">+977 1-4423456</span>
+                    </div>
+                    <div
+                        class="flex items-center gap-1.5 hover:text-accent transition-colors cursor-pointer group/item">
+                        <span
+                            class="material-symbols-outlined text-[15px] group-hover/item:scale-110 transition-transform">call</span>
+                        <span class="font-medium tracking-wide">+977-9818339553</span>
+                    </div>
+                    <div class="w-px h-3.5 bg-cream/20 mx-1"></div>
+                    <div
+                        class="flex items-center gap-1.5 hover:text-accent transition-colors cursor-pointer group/item">
+                        <span
+                            class="material-symbols-outlined text-[15px] group-hover/item:scale-110 transition-transform">location_on</span>
+                        <span class="font-medium tracking-wide">Hattigauda</span>
+                    </div>
+                    <div
+                        class="flex items-center gap-1.5 hover:text-accent transition-colors cursor-pointer group/item">
+                        <span
+                            class="material-symbols-outlined text-[15px] group-hover/item:scale-110 transition-transform">location_on</span>
+                        <span class="font-medium tracking-wide">Bhaktapur</span>
+                    </div>
+                    <div
+                        class="flex items-center gap-1.5 hover:text-accent transition-colors cursor-pointer group/item">
+                        <span
+                            class="material-symbols-outlined text-[15px] group-hover/item:scale-110 transition-transform">location_on</span>
+                        <span class="font-medium tracking-wide">Chabahil</span>
+                    </div>
+                    <div
+                        class="flex items-center gap-1.5 hover:text-accent transition-colors cursor-pointer group/item">
+                        <span
+                            class="material-symbols-outlined text-[15px] group-hover/item:scale-110 transition-transform">location_on</span>
+                        <span class="font-medium tracking-wide">Kalanki</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Navbar -->
+        <div class="w-full glass-nav transition-all duration-300 relative">
+            <div class="max-w-[1280px] mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
+                <div class="flex items-center gap-2 text-primary">
+                    <span class="material-symbols-outlined text-[28px]">coffee_maker</span>
+                    <span class="text-xl font-bold tracking-tight uppercase">Caffeine Factory</span>
+                </div>
+                <div class="hidden md:flex items-center gap-6 lg:gap-8">
+                    <a class="text-sm font-medium hover:text-accent transition-colors" href="#courses">Courses</a>
+                    <a class="text-sm font-medium hover:text-accent transition-colors" href="#locations">Branches</a>
+                    <a class="text-sm font-medium hover:text-accent transition-colors" href="#about">About</a>
+                    <a class="text-sm font-medium hover:text-accent transition-colors" href="#gallery">Gallery</a>
+                </div>
+
+                <div class="hidden md:flex items-center gap-4 lg:gap-6">
+                    <!-- Social Media -->
+                    <div class="flex items-center gap-3 lg:gap-4 text-primary">
+                        <a href="#" class="hover:text-accent transition-colors flex items-center group/item"
+                            aria-label="Facebook">
+                            <svg class="w-4 h-4 lg:w-[18px] lg:h-[18px] fill-current group-hover/item:scale-110 transition-transform"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="hover:text-accent transition-colors flex items-center group/item"
+                            aria-label="Instagram">
+                            <svg class="w-4 h-4 lg:w-[18px] lg:h-[18px] fill-current group-hover/item:scale-110 transition-transform"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="hover:text-accent transition-colors flex items-center group/item"
+                            aria-label="YouTube">
+                            <svg class="w-4 h-4 lg:w-[18px] lg:h-[18px] fill-current group-hover/item:scale-110 transition-transform"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                            </svg>
+                        </a>
+                    </div>
+
+                    <button
+                        class="bg-primary hover:bg-primary-light text-cream text-sm font-bold py-2 px-5 lg:py-2.5 lg:px-6 rounded-full transition-all duration-300 shadow-lg shadow-primary/20">
+                        Enroll Now
+                    </button>
+                </div>
+                <!-- Mobile Menu Icon -->
+                <button id="mobile-menu-btn" class="md:hidden text-primary p-2">
+                    <span class="material-symbols-outlined text-3xl">menu</span>
+                </button>
+            </div>
+            <!-- Mobile Menu Container -->
+            <div id="mobile-menu"
+                class="hidden md:hidden bg-white/95 backdrop-blur-xl border-t border-primary/5 absolute top-full left-0 w-full shadow-xl transition-all duration-300 origin-top transform">
+                <div class="flex flex-col p-6 gap-4">
+                    <a class="text-lg font-medium text-primary hover:text-accent transition-colors py-2 border-b border-primary/5"
+                        href="#courses">Courses</a>
+                    <a class="text-lg font-medium text-primary hover:text-accent transition-colors py-2 border-b border-primary/5"
+                        href="#locations">Branches</a>
+                    <a class="text-lg font-medium text-primary hover:text-accent transition-colors py-2 border-b border-primary/5"
+                        href="#about">About</a>
+                    <a class="text-lg font-medium text-primary hover:text-accent transition-colors py-2 border-b border-primary/5"
+                        href="#gallery">Gallery</a>
+                    <button class="bg-primary text-cream text-base font-bold py-3 px-6 rounded-full mt-2 shadow-lg">
+                        Enroll Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div id="smooth-wrapper" data-lg-smooth>
+        <!-- Hero Section -->
+        <section id="hero"
+            class="relative h-screen min-h-[600px] w-full flex items-center justify-center overflow-hidden">
+            <video autoplay loop muted playsinline id="hero-bg" class="absolute inset-0 z-0 w-full h-full object-cover">
+                <source
+                    src="https://res.cloudinary.com/dj7hwtgxy/video/upload/v1771477013/2909914-uhd_3840_2024_24fps_c9voh5.mp4"
+                    type="video/mp4">
+            </video>
+            <div class="absolute inset-0 z-10 hero-overlay"></div>
+            <div id="hero-content"
+                class="relative z-20 container mx-auto px-6 text-center flex flex-col items-center gap-6 max-w-4xl pt-20">
+                <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-4 animate-fade-in-up max-w-3xl">
+                    <a href="#locations"
+                        class="group rounded-full bg-white/5 hover:bg-white/15 border border-white/10 backdrop-blur-md px-3 sm:px-4 py-1.5 cursor-pointer inline-flex items-center transition-all duration-300 hover:-translate-y-0.5">
+                        <span
+                            class="text-cream/70 group-hover:text-white text-[10px] sm:text-[11px] font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors">
+                            <span class="material-symbols-outlined text-[14px]">location_on</span>
+                            <span>Hattigauda</span>
+                        </span>
+                    </a>
+                    <a href="#locations"
+                        class="group rounded-full bg-white/5 hover:bg-white/15 border border-white/10 backdrop-blur-md px-3 sm:px-4 py-1.5 cursor-pointer inline-flex items-center transition-all duration-300 hover:-translate-y-0.5">
+                        <span
+                            class="text-cream/70 group-hover:text-white text-[10px] sm:text-[11px] font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors">
+                            <span class="material-symbols-outlined text-[14px]">location_on</span>
+                            <span>Bhaktapur</span>
+                        </span>
+                    </a>
+                    <a href="#locations"
+                        class="group rounded-full bg-white/5 hover:bg-white/15 border border-white/10 backdrop-blur-md px-3 sm:px-4 py-1.5 cursor-pointer inline-flex items-center transition-all duration-300 hover:-translate-y-0.5">
+                        <span
+                            class="text-cream/70 group-hover:text-white text-[10px] sm:text-[11px] font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors">
+                            <span class="material-symbols-outlined text-[14px]">location_on</span>
+                            <span>Chabahil</span>
+                        </span>
+                    </a>
+                    <a href="#locations"
+                        class="group rounded-full bg-white/5 hover:bg-white/15 border border-white/10 backdrop-blur-md px-3 sm:px-4 py-1.5 cursor-pointer inline-flex items-center transition-all duration-300 hover:-translate-y-0.5">
+                        <span
+                            class="text-cream/70 group-hover:text-white text-[10px] sm:text-[11px] font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors">
+                            <span class="material-symbols-outlined text-[14px]">location_on</span>
+                            <span>Kalanki</span>
+                        </span>
+                    </a>
+                </div>
+                <h1
+                    class="text-cream text-5xl md:text-7xl font-black heading-premium drop-shadow-sm leading-tight max-w-5xl mx-auto">
+                    Master the <span class="font-serif italic font-normal aurora-text tracking-normal">Craft</span> of
+                    Coffee
+                </h1>
+                <p class="text-cream/90 text-lg md:text-xl font-light max-w-xl leading-relaxed">
+                    Professional barista training across the valley. From bean to cup, elevate your skills with industry
+                    leaders.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 mt-6 w-full justify-center">
+                    <button
+                        class="ripple-btn relative overflow-hidden bg-accent hover:bg-[#A86A46] text-white text-base font-bold py-3.5 px-8 rounded-full transition-all duration-300 shadow-lg min-w-[180px]">
+                        Explore Courses
+                    </button>
+                    <button
+                        class="ripple-btn relative overflow-hidden bg-transparent border border-cream/40 hover:bg-cream/10 text-cream text-base font-bold py-3.5 px-8 rounded-full transition-all duration-300 backdrop-blur-sm min-w-[180px]">
+                        Find a Branch
+                    </button>
+                </div>
+            </div>
+            <!-- Scroll indicator -->
+            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 animate-bounce text-cream/60 hidden md:block">
+                <span class="material-symbols-outlined">keyboard_arrow_down</span>
+            </div>
+        </section>
+        <!-- Social Proof Strip -->
+        <div class="bg-white border-b border-gray-100 py-8 md:py-10">
+            <div
+                class="max-w-[1280px] mx-auto px-6 flex flex-wrap justify-center md:justify-around gap-8 md:gap-0 divide-x-0 md:divide-x divide-gray-200">
+                <div class="flex flex-col items-center px-6">
+                    <div class="flex items-center gap-1 text-primary mb-1">
+                        <span class="text-3xl font-bold tracking-tight">5.0</span>
+                        <span class="material-symbols-outlined text-accent text-xl">star</span>
+                    </div>
+                    <p class="text-sm font-medium text-gray-500 uppercase tracking-wider">Average Rating</p>
+                </div>
+                <div class="flex flex-col items-center px-6">
+                    <p class="text-3xl font-bold text-primary mb-1">500+</p>
+                    <p class="text-sm font-medium text-gray-500 uppercase tracking-wider">Trained Baristas</p>
+                </div>
+                <div class="flex flex-col items-center px-6">
+                    <p class="text-3xl font-bold text-primary mb-1">23+</p>
+                    <p class="text-sm font-medium text-gray-500 uppercase tracking-wider">Five-Star Reviews</p>
+                </div>
+            </div>
+        </div>
+        <!-- Featured Courses -->
+        <section class="py-20 md:py-28 max-w-[1280px] mx-auto px-6" id="courses">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
+                <div>
+                    <span class="text-accent font-bold uppercase tracking-wider text-sm">Curriculum</span>
+                    <h2 class="text-primary text-3xl md:text-4xl font-bold mt-2 heading-premium">Signature Courses</h2>
+                </div>
+                <a class="text-primary font-bold border-b-2 border-primary pb-0.5 hover:text-accent hover:border-accent transition-colors flex items-center gap-1"
+                    href="#">
+                    View All Courses <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Course 1 -->
+                <div class="group cursor-pointer">
+                    <div class="relative aspect-[4/3] md:aspect-[3/4] overflow-hidden rounded-xl mb-6 shadow-md">
+                        <div class="absolute inset-0 bg-primary/20 group-hover:bg-primary/0 transition-all z-10"></div>
+                        <img alt="Barista holding a portafilter with fresh ground coffee"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBO3XQf0hFTQcoJvo5CL5Dp7lwUPZXoRQ9SCm9H-ls9FEyRf68vAYQXllVlnHl2zTf5LbdSX0o5iKS7IREdukJEC_8_kNXPsxRKV77TKfyN9HTpMKJF38HGsn-4IyrMKsqs-wzUb315G7KjGTOrZ_WOMPdVw8ynWi9qNbjM1erqNpBhhwPcEn1OJV6ZNCTVOfXpImY8Uq4hFUY7s4fcA7CM912tdBcb59f5JtUf75UqxYiY_PgJJSHachSsUsTupiJ9ttISMl-ySg" />
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-xl font-bold text-primary group-hover:text-accent transition-colors">
+                                Foundations
+                                of Espresso</h3>
+                            <p class="text-gray-500 mt-1">2 Weeks • Beginner Friendly</p>
+                        </div>
+                        <button
+                            class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
+                            <span class="material-symbols-outlined text-lg">arrow_outward</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Course 2 -->
+                <div class="group cursor-pointer mt-0 md:mt-12"> <!-- Offset layout -->
+                    <div class="relative aspect-[4/3] md:aspect-[3/4] overflow-hidden rounded-xl mb-6 shadow-md">
+                        <div class="absolute inset-0 bg-primary/20 group-hover:bg-primary/0 transition-all z-10"></div>
+                        <img alt="Intricate latte art being poured into a ceramic cup"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            src="https://azmfbhffgqqeqbxmkdqf.supabase.co/storage/v1/object/sign/Images/Whisk_0000i0msk01m1.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9kMGEwNjY0NC0xYWI4LTQ1YWYtYWE0NS1kY2QwNDYzZjc2ZjUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJJbWFnZXMvV2hpc2tfMDAwMGkwbXNrMDFtMS5wbmciLCJpYXQiOjE3NzE4MzY2NTIsImV4cCI6MTgwMzM3MjY1Mn0.oRHqCKZe0mQ6zZQsyoWCi6BkN-ehYdn3Ji4mA3dK9qY" />
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-xl font-bold text-primary group-hover:text-accent transition-colors">Latte
+                                Art
+                                Mastery</h3>
+                            <p class="text-gray-500 mt-1">1 Week • Intermediate</p>
+                        </div>
+                        <button
+                            class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
+                            <span class="material-symbols-outlined text-lg">arrow_outward</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Course 3 -->
+                <div class="group cursor-pointer">
+                    <div class="relative aspect-[4/3] md:aspect-[3/4] overflow-hidden rounded-xl mb-6 shadow-md">
+                        <div class="absolute inset-0 bg-primary/20 group-hover:bg-primary/0 transition-all z-10"></div>
+                        <img alt="Coffee beans being inspected for quality roasting"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTVNmjW1RMhapfNPwW9soThQcHKvh5euRj8kwTCMvUwCWugsk-DBxz7J4ZzqDbiRQ9W5MrjlP5Kk_H5OIJWJyyW8tlLzzNuow2rYrkxOW5D4upwUWbtTr6Q6CNzBrKOT6CL0UlYNhUDBUsbvoyHJbrlf_WXZbw0ibVwtVzNR0KiG9cxHizYfM9pBvbVF5tTAAKB2lYmLbtLvVvAn__Ok_ay9dH5E5tvkedGYBzZdyHWrq3bsgAQm0IRSgTjCwUmM140d9Dv34Zyg" />
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-xl font-bold text-primary group-hover:text-accent transition-colors">Brewing
+                                Science</h3>
+                            <p class="text-gray-500 mt-1">3 Weeks • Advanced</p>
+                        </div>
+                        <button
+                            class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
+                            <span class="material-symbols-outlined text-lg">arrow_outward</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Why Choose Us -->
+        <section class="bg-white py-20 md:py-0 overflow-hidden" id="about">
+            <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row">
+                <div class="w-full md:w-1/2 relative min-h-[500px]">
+                    <img alt="Student barista learning on a commercial espresso machine"
+                        class="absolute inset-0 w-full h-full object-cover"
+                        src="https://azmfbhffgqqeqbxmkdqf.supabase.co/storage/v1/object/sign/Images/girl.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9kMGEwNjY0NC0xYWI4LTQ1YWYtYWE0NS1kY2QwNDYzZjc2ZjUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJJbWFnZXMvZ2lybC5wbmciLCJpYXQiOjE3NzE4MzY0OTksImV4cCI6MTgwMzM3MjQ5OX0.8rbdGh2UKzd181UDlvH00Q8nKO2bVXJuOHS1W2WmHHQ" />
+                </div>
+                <div class="w-full md:w-1/2 px-8 py-16 md:p-24 flex flex-col justify-center bg-[#FDFCFB]">
+                    <span class="text-accent font-bold uppercase tracking-wider text-sm mb-4">Why Caffeine
+                        Factory</span>
+                    <h2 class="text-primary text-3xl md:text-5xl font-bold mb-8 heading-premium">Elevating Coffee
+                        Standards
+                        in Nepal.</h2>
+                    <p class="text-gray-600 leading-relaxed mb-10 text-lg">
+                        We don't just teach you how to make coffee; we teach you the science, art, and business behind
+                        every
+                        cup. Join a community of passionate professionals.
+                    </p>
+                    <div class="space-y-8">
+                        <div class="flex gap-4">
+                            <div
+                                class="w-12 h-12 rounded-full bg-primary/5 flex items-center justify-center flex-shrink-0 text-primary">
+                                <span class="material-symbols-outlined">coffee</span>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-primary mb-1">Industry-Grade Machines</h4>
+                                <p class="text-sm text-gray-500 leading-relaxed">Train on La Marzocco and Nuova
+                                    Simonelli
+                                    machines used in top cafes worldwide.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div
+                                class="w-12 h-12 rounded-full bg-primary/5 flex items-center justify-center flex-shrink-0 text-primary">
+                                <span class="material-symbols-outlined">group</span>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-primary mb-1">Small Batch Classes</h4>
+                                <p class="text-sm text-gray-500 leading-relaxed">Maximum of 6 students per session to
+                                    ensure
+                                    personalized attention and ample practice time.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div
+                                class="w-12 h-12 rounded-full bg-primary/5 flex items-center justify-center flex-shrink-0 text-primary">
+                                <span class="material-symbols-outlined">school</span>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-primary mb-1">Internationally Recognized</h4>
+                                <p class="text-sm text-gray-500 leading-relaxed">Curriculum aligned with SCA standards,
+                                    opening doors for global employment.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Multi-Branch Section -->
+        <section class="py-20 md:py-28 bg-background-light px-6" id="locations">
+            <div class="max-w-[1280px] mx-auto">
+                <div class="text-center mb-16">
+                    <span class="text-accent font-bold uppercase tracking-wider text-sm">Locations</span>
+                    <h2 class="text-primary text-3xl md:text-4xl font-bold mt-2 heading-premium">Find Us Across the
+                        Valley
+                    </h2>
+                </div>
+                <div class="grid lg:grid-cols-3 gap-8">
+                    <!-- Map Container (Visual Representation) -->
+                    <div
+                        class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden relative min-h-[400px] h-full">
+                        <!-- Placeholder for Map -->
+                        <div class="absolute inset-0 bg-[#EBE8E4] opacity-30"></div>
+                        <img alt="Stylized map of Kathmandu valley"
+                            class="absolute inset-0 w-full h-full object-cover opacity-60"
+                            data-location="Kathmandu Valley"
+                            src="https://azmfbhffgqqeqbxmkdqf.supabase.co/storage/v1/object/sign/Images/map.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9kMGEwNjY0NC0xYWI4LTQ1YWYtYWE0NS1kY2QwNDYzZjc2ZjUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJJbWFnZXMvbWFwLnBuZyIsImlhdCI6MTc3MTQyNDk0OSwiZXhwIjoxODAyOTYwOTQ5fQ.blNpFWh9ALhgAkLXFU30nsWM0jxHPfkkK81dUeAROV8" />
+                        <!-- Decorative Map Markers -->
+                        <div class="absolute top-[30%] left-[40%] flex flex-col items-center group cursor-pointer">
+                            <span
+                                class="material-symbols-outlined text-primary text-4xl drop-shadow-md group-hover:text-accent transition-colors">location_on</span>
+                            <span
+                                class="bg-primary text-white text-xs px-2 py-1 rounded shadow-md mt-1 font-bold">Hattigauda</span>
+                        </div>
+                        <div class="absolute top-[50%] left-[45%] flex flex-col items-center group cursor-pointer">
+                            <span
+                                class="material-symbols-outlined text-primary text-4xl drop-shadow-md group-hover:text-accent transition-colors">location_on</span>
+                            <span
+                                class="bg-primary text-white text-xs px-2 py-1 rounded shadow-md mt-1 font-bold">Bhaktapur</span>
+                        </div>
+                        <div class="absolute top-[65%] left-[35%] flex flex-col items-center group cursor-pointer">
+                            <span
+                                class="material-symbols-outlined text-primary text-4xl drop-shadow-md group-hover:text-accent transition-colors">location_on</span>
+                            <span
+                                class="bg-primary text-white text-xs px-2 py-1 rounded shadow-md mt-1 font-bold">Chabahil</span>
+                        </div>
+                        <div class="absolute top-[55%] left-[25%] flex flex-col items-center group cursor-pointer">
+                            <span
+                                class="material-symbols-outlined text-primary text-4xl drop-shadow-md group-hover:text-accent transition-colors">location_on</span>
+                            <span
+                                class="bg-primary text-white text-xs px-2 py-1 rounded shadow-md mt-1 font-bold">Kalanki</span>
+                        </div>
+
+                    </div>
+                    <!-- Locations List -->
+                    <div class="flex flex-col gap-4">
+                        <!-- Branch 1 -->
+                        <div
+                            class="bg-white p-6 rounded-xl border border-gray-200 hover:border-accent/50 transition-colors shadow-sm group">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-lg font-bold text-primary">Hattigauda</h3>
+                                <span
+                                    class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full font-medium">Open
+                                    Now</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mb-4">Near Budhanilkantha School, Hattigauda</p>
+                            <div class="flex gap-3 mt-4">
+                                <button
+                                    class="text-xs font-bold uppercase tracking-wide text-primary border border-primary px-4 py-2 rounded hover:bg-primary hover:text-white transition-colors w-full">Get
+                                    Directions</button>
+                                <button
+                                    class="w-10 h-9 border border-gray-200 rounded flex items-center justify-center text-primary hover:border-primary">
+                                    <span class="material-symbols-outlined text-base">call</span>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Branch 2 -->
+                        <div
+                            class="bg-white p-6 rounded-xl border border-gray-200 hover:border-accent/50 transition-colors shadow-sm group">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-lg font-bold text-primary">Bhaktapur</h3>
+                                <span
+                                    class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full font-medium">Open
+                                    Now</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mb-4">Suryabinayak Chowk, Bhaktapur</p>
+                            <div class="flex gap-3 mt-4">
+                                <button
+                                    class="text-xs font-bold uppercase tracking-wide text-primary border border-primary px-4 py-2 rounded hover:bg-primary hover:text-white transition-colors w-full">Get
+                                    Directions</button>
+                                <button
+                                    class="w-10 h-9 border border-gray-200 rounded flex items-center justify-center text-primary hover:border-primary">
+                                    <span class="material-symbols-outlined text-base">call</span>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Branch 3 -->
+                        <div
+                            class="bg-white p-6 rounded-xl border border-gray-200 hover:border-accent/50 transition-colors shadow-sm group">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-lg font-bold text-primary">Chabahil</h3>
+                                <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full font-medium">Opens
+                                    at 10AM</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mb-4">Near Chabahil Stupa, Kathmandu</p>
+                            <div class="flex gap-3 mt-4">
+                                <button
+                                    class="text-xs font-bold uppercase tracking-wide text-primary border border-primary px-4 py-2 rounded hover:bg-primary hover:text-white transition-colors w-full">Get
+                                    Directions</button>
+                                <button
+                                    class="w-10 h-9 border border-gray-200 rounded flex items-center justify-center text-primary hover:border-primary">
+                                    <span class="material-symbols-outlined text-base">call</span>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Branch 4 -->
+                        <div
+                            class="bg-white p-6 rounded-xl border border-gray-200 hover:border-accent/50 transition-colors shadow-sm group">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-lg font-bold text-primary">Kalanki</h3>
+                                <span
+                                    class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full font-medium">Open
+                                    Now</span>
+                            </div>
+                            <p class="text-gray-500 text-sm mb-4">Makalu Petrol Pump, Kalanki</p>
+                            <div class="flex gap-3 mt-4">
+                                <button
+                                    class="text-xs font-bold uppercase tracking-wide text-primary border border-primary px-4 py-2 rounded hover:bg-primary hover:text-white transition-colors w-full">Get
+                                    Directions</button>
+                                <button
+                                    class="w-10 h-9 border border-gray-200 rounded flex items-center justify-center text-primary hover:border-primary">
+                                    <span class="material-symbols-outlined text-base">call</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Visual Gallery -->
+        <section class="py-20 md:py-28 max-w-[1440px] mx-auto px-6" id="gallery">
+            <div class="flex flex-col items-center mb-12 text-center">
+                <span class="text-accent font-bold uppercase tracking-wider text-sm">Gallery</span>
+                <h2 class="text-primary text-3xl md:text-4xl font-bold mt-2 heading-premium">Life at Caffeine Factory
+                </h2>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
+                <!-- Item 1 -->
+                <div class="col-span-2 row-span-2 rounded-xl overflow-hidden relative group">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all z-10"></div>
+                    <img alt="Cozy coffee shop interior with warm lighting"
+                        class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7pLJ1-3hd_VWi7UJrfHLbwMtVEF2GoKe0GQpW0JD5lDqDL-6lBlOq87kAk-YBx66sRSML2MqeupWuWqLBXIULRcLTf1bpjzkNvirw3g4QBKE5bKiFUZOx0bcG06QYURAvwGOa1t7pCDpCMZKwhBowJCcdBVgV9sehTcaBa-R50TvK6Hi5elAJm5lP9zQlso-aeO5UbuOMVfJpQ2XDmhMaLyWQTN_XNxHUaUZnBkG5iwZJlLpN9w8_Alts74z_UA-geTua1sWAZg" />
+                </div>
+                <!-- Item 2 -->
+                <div class="col-span-1 row-span-1 rounded-xl overflow-hidden relative group">
+                    <img alt="Close up of latte art being poured"
+                        class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAg3xH1hTcdLhNoKF7Zj63cPK_xPtmOHVU373bxWPLxIsh9gr3lgMq4uKBU40JMYz9skI3dmCZUEfGZNgrWvq4-5Vu__g4IOssp0VNTtJouIfFN5ALjIws7rIkzJH5BI6X1Sff7KkcMF5DY3BgozbtbN4ppYsjBWnRw2q7Sqy44hM9oZ9wZP6r6cfMu-gEQXhDV1x1yid2Idb0NYV9NMPj8DBJRvPPvkE2oXvQgFE48IabOJAF_wTMdJHaRqwZIIJrVtDKhqC9yJA" />
+                </div>
+                <!-- Item 3 -->
+                <div class="col-span-1 row-span-2 rounded-xl overflow-hidden relative group">
+                    <img alt="Barista smiling while working at espresso machine"
+                        class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMiKW1tZ0_uPK1JDedWjwMJlG-uA3MrTQnITAvG7mMQz5fEH8ILDrl_v-dLD3eCTYF_0BzTlCQpY0IugO9pLolnBfHH6RIhxNu_mL6FVnVsH_AGKz3Kr_sw3mEAllUcQZ92UKzrXOHagh24-XLC5Nx6goks0tkwTEpixyyjomZTODhnl1sEFP7EkxbPCLpwiI4fNzzD_E34qsgCmuFbQv91-Ui0A5g6d1EFf5iuyX6aVRdsacQycBhIVPYhu3ktRSEK80hBKPxCw" />
+                </div>
+                <!-- Item 4 -->
+                <div class="col-span-1 row-span-1 rounded-xl overflow-hidden relative group">
+                    <img alt="Overhead shot of coffee cups on wooden table"
+                        class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJuQaNG2-kA7W0O3O9O-5lH94x1y-a3ffDPtQ0eNWHkegJ5gMPIOj8j8A1bSYnKCJcyu1G_rTnHSeH_X1CCD28aPTt6Z_ZwFCA61wf3WOxDLUtxQsN7_o9T-rasJBFfuyWBx9cSKAcXHVa_CB8mCYyZt3gtGkTx25w1nLu9lKnc8uRQqLiEBL5m_bfMSY9XkoiMvvHP-kQlZ3zT5MytLtAPLZKwgQRMZ3Z8UUhILrVbo3BjYpTrnTlvbfJdTmQkbSlIfpUOulO8Q" />
+                </div>
+            </div>
+        </section>
+        <!-- Footer -->
+        <footer class="bg-primary text-cream pt-20 pb-10 px-6">
+            <div class="max-w-[1280px] mx-auto">
+                <div
+                    class="flex flex-col md:flex-row justify-between items-start gap-12 border-b border-cream/10 pb-16">
+                    <div class="md:w-1/2">
+                        <h2 class="text-4xl md:text-5xl font-bold mb-6 heading-premium">Ready to start your coffee
+                            journey?
+                        </h2>
+                        <p class="text-cream/60 text-lg mb-8 max-w-md">Enroll today and take the first step towards
+                            becoming
+                            a professional barista.</p>
+                        <div class="flex gap-4">
+                            <button
+                                class="bg-accent hover:bg-[#A86A46] text-white text-base font-bold py-3 px-8 rounded-full transition-all duration-300">
+                                Apply Now
+                            </button>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 grid grid-cols-2 sm:grid-cols-3 gap-8 w-full">
+                        <div>
+                            <h4 class="font-bold text-white mb-4 uppercase tracking-wider text-sm">Explore</h4>
+                            <ul class="space-y-3 text-cream/70 text-sm">
+                                <li><a class="hover:text-white transition-colors" href="#">Courses</a></li>
+                                <li><a class="hover:text-white transition-colors" href="#">About Us</a></li>
+                                <li><a class="hover:text-white transition-colors" href="#">Locations</a></li>
+                                <li><a class="hover:text-white transition-colors" href="#">Gallery</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white mb-4 uppercase tracking-wider text-sm">Contact</h4>
+                            <ul class="space-y-3 text-cream/70 text-sm">
+                                <li><a class="hover:text-white transition-colors" href="#">+977 1-4423456</a></li>
+                                <li><a class="hover:text-white transition-colors" href="#">hello@caffeinefactory.np</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white mb-4 uppercase tracking-wider text-sm">Social</h4>
+                            <ul class="space-y-3 text-cream/70 text-sm">
+                                <li><a class="hover:text-white transition-colors" href="#">Instagram</a></li>
+                                <li><a class="hover:text-white transition-colors" href="#">Facebook</a></li>
+                                <li><a class="hover:text-white transition-colors" href="#">TikTok</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-cream/40">
+                    <p>© 2024 Caffeine Factory. All rights reserved.</p>
+                    <div class="flex gap-6 mt-4 md:mt-0">
+                        <a class="hover:text-white transition-colors" href="#">Privacy Policy</a>
+                        <a class="hover:text-white transition-colors" href="#">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- Luge.js Smooth Scroll -->
+    <script src="https://unpkg.com/@waaark/luge@0.6.10/dist/js/luge.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const buttons = document.querySelectorAll('.ripple-btn');
+
+            buttons.forEach(btn => {
+                btn.addEventListener('click', function (e) {
+                    const circle = document.createElement('span');
+                    const diameter = Math.max(btn.clientWidth, btn.clientHeight);
+                    const radius = diameter / 2;
+
+                    circle.style.width = circle.style.height = `${diameter}px`;
+                    circle.style.left = `${e.clientX - btn.getBoundingClientRect().left - radius}px`;
+                    circle.style.top = `${e.clientY - btn.getBoundingClientRect().top - radius}px`;
+                    circle.classList.add('ripple');
+
+                    const ripple = btn.getElementsByClassName('ripple')[0];
+
+                    if (ripple) {
+                        ripple.remove();
+                    }
+
+                    btn.appendChild(circle);
+                });
+            });
+
+            // Mobile Menu Toggle
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (mobileBtn && mobileMenu) {
+                mobileBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                    const icon = mobileBtn.querySelector('.material-symbols-outlined');
+                    if (mobileMenu.classList.contains('hidden')) {
+                        icon.textContent = 'menu';
+                    } else {
+                        icon.textContent = 'close';
+                    }
+                });
+
+                // Close menu when clicking a link
+                const mobileLinks = mobileMenu.querySelectorAll('a');
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                        mobileBtn.querySelector('.material-symbols-outlined').textContent = 'menu';
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

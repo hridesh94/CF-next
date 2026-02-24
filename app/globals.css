@@ -1,0 +1,157 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ───────────────────────────────────────────
+   Base / Reset
+─────────────────────────────────────────── */
+html,
+body {
+  font-family: var(--font-inter), sans-serif;
+  background-color: #f7f7f6;
+  color: #1b1817;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+::selection {
+  background-color: #D4A373;
+  color: #000000;
+}
+
+::-moz-selection {
+  background-color: #D4A373;
+  color: #000000;
+}
+
+/* ───────────────────────────────────────────
+   Glassmorphism Nav
+─────────────────────────────────────────── */
+.glass-nav {
+  background: rgba(247, 247, 246, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(60, 43, 37, 0.05);
+}
+
+/* ───────────────────────────────────────────
+   Hero Overlay
+─────────────────────────────────────────── */
+.hero-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(27, 24, 23, 0.6) 0%,
+    rgba(60, 43, 37, 0.8) 100%
+  );
+}
+
+/* ───────────────────────────────────────────
+   Noise Texture Overlay
+─────────────────────────────────────────── */
+.texture-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.15;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+/* ───────────────────────────────────────────
+   Typography
+─────────────────────────────────────────── */
+.heading-premium {
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+/* ───────────────────────────────────────────
+   Ripple Effect
+─────────────────────────────────────────── */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  background-color: rgba(193, 127, 89, 0.4);
+  pointer-events: none;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* ───────────────────────────────────────────
+   Aurora Text
+─────────────────────────────────────────── */
+.aurora-text {
+  background: linear-gradient(
+    90deg,
+    #C17F59 0%,
+    #F6F1EB 25%,
+    #D4A373 50%,
+    #C17F59 75%,
+    #F6F1EB 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: aurora 4s linear infinite;
+}
+
+@keyframes aurora {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* ───────────────────────────────────────────
+   Shiny Text
+─────────────────────────────────────────── */
+.shiny-container {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  transition: all 0.3s ease;
+}
+
+.shiny-container:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.shiny-text {
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.5) 40%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(255, 255, 255, 0.5) 60%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: shine 3s infinite linear;
+  display: inline-flex;
+  align-items: center;
+}
+
+@keyframes shine {
+  0%   { background-position: 100%; }
+  100% { background-position: -100%; }
+}

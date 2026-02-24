@@ -31,15 +31,15 @@ export default function Navbar() {
 
             {/* ── Main Navbar ──────────────────────────────────────────── */}
             <div className="w-full glass-nav transition-all duration-300 relative">
-                <div className="max-w-[1280px] mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
+                <div className="max-w-[1280px] mx-auto px-6 lg:px-12 h-24 md:h-28 flex items-center justify-between">
                     {/* Logo */}
                     <Link href="/" className="flex items-center" aria-label="Caffeine Factory — Home">
                         <Image
                             src="/logo.svg"
                             alt="Caffeine Factory"
-                            width={240}
-                            height={80}
-                            className="h-16 sm:h-20 md:h-24 w-auto object-contain"
+                            width={320}
+                            height={100}
+                            className="h-20 sm:h-24 md:h-28 w-auto object-contain transform scale-110 origin-left"
                             priority
                         />
                     </Link>

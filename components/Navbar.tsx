@@ -37,9 +37,9 @@ export default function Navbar() {
                         <Image
                             src="/logo.svg"
                             alt="Caffeine Factory"
-                            width={56}
-                            height={56}
-                            className="h-11 sm:h-12 md:h-14 w-auto object-contain"
+                            width={240}
+                            height={80}
+                            className="h-16 sm:h-20 md:h-24 w-auto object-contain"
                             priority
                         />
                     </Link>

@@ -35,9 +35,9 @@ export default function Footer() {
                         <Image
                             src="/logo.svg"
                             alt="Caffeine Factory"
-                            width={56}
-                            height={56}
-                            className="h-14 w-auto object-contain mb-6 brightness-0 invert opacity-90"
+                            width={240}
+                            height={80}
+                            className="h-24 w-auto object-contain mb-6 brightness-0 invert opacity-90"
                             loading="lazy"
                         />
                         <h2 className="text-4xl md:text-5xl font-bold mb-6 heading-premium">

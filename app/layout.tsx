@@ -122,30 +122,11 @@ export default function RootLayout({
                 <link rel="dns-prefetch" href="https://azmfbhffgqqeqbxmkdqf.supabase.co" />
                 <link rel="dns-prefetch" href="https://lh3.googleusercontent.com" />
 
-                {/*
-                 * Material Symbols — loaded non-render-blocking via the
-                 * media="print" trick: browser downloads it without blocking
-                 * paint, then flips to all media once loaded.
-                 * Fixes INP / render-blocking resource issue.
-                 */}
+                {/* Material Symbols — synchronous so icons are ready at first paint */}
                 <link
-                    rel="preload"
-                    as="style"
-                    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=optional"
-                />
-                <link
-                    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=optional"
+                    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
                     rel="stylesheet"
-                    media="print"
-                    // @ts-expect-error — onLoad string is valid for this pattern
-                    onLoad="this.media='all'"
                 />
-                <noscript>
-                    <link
-                        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=optional"
-                        rel="stylesheet"
-                    />
-                </noscript>
 
                 {/* Root JSON-LD */}
                 <script

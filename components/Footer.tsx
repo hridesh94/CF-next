@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import AnimateInView, { fadeUp, staggerContainer } from '@/components/AnimateInView';
 
@@ -30,6 +31,15 @@ export default function Footer() {
 
                     {/* CTA Block — slides up */}
                     <AnimateInView variants={fadeUp} duration={0.7} className="md:w-1/2">
+                        {/* Brand logo */}
+                        <Image
+                            src="https://azmfbhffgqqeqbxmkdqf.supabase.co/storage/v1/object/sign/Images/Whisk_fe546a66b9f5d409fea4abb78a98e127dr.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9kMGEwNjY0NC0xYWI4LTQ1YWYtYWE0NS1kY2QwNDYzZjc2ZjUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJJbWFnZXMvV2hpc2tfZmU1NDZhNjZiOWY1ZDQwOWZlYTRhYmI3OGE5OGUxMjdkci5wbmciLCJpYXQiOjE3NzE5MDkyNDksImV4cCI6MTgwMzQ0NTI0OX0.ML6i9fHP_0BLmXPezJIDVcvuCXpaaHv5IB4fe49gSiE"
+                            alt="Caffeine Factory"
+                            width={160}
+                            height={48}
+                            className="h-10 w-auto object-contain mb-6 brightness-0 invert opacity-90"
+                            loading="lazy"
+                        />
                         <h2 className="text-4xl md:text-5xl font-bold mb-6 heading-premium">
                             Ready to start your coffee journey?
                         </h2>

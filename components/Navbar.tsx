@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const navLinks = [
     { href: '/#courses', label: 'Courses' },
@@ -32,11 +33,15 @@ export default function Navbar() {
             <div className="w-full glass-nav transition-all duration-300 relative">
                 <div className="max-w-[1280px] mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
                     {/* Logo */}
-                    <Link href="/" className="flex items-center gap-2 text-primary">
-                        <span className="material-symbols-outlined text-[28px]" aria-hidden="true">
-                            coffee_maker
-                        </span>
-                        <span className="text-xl font-bold tracking-tight uppercase">Caffeine Factory</span>
+                    <Link href="/" className="flex items-center" aria-label="Caffeine Factory — Home">
+                        <Image
+                            src="https://azmfbhffgqqeqbxmkdqf.supabase.co/storage/v1/object/sign/Images/Whisk_fe546a66b9f5d409fea4abb78a98e127dr.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9kMGEwNjY0NC0xYWI4LTQ1YWYtYWE0NS1kY2QwNDYzZjc2ZjUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJJbWFnZXMvV2hpc2tfZmU1NDZhNjZiOWY1ZDQwOWZlYTRhYmI3OGE5OGUxMjdkci5wbmciLCJpYXQiOjE3NzE5MDkyNDksImV4cCI6MTgwMzQ0NTI0OX0.ML6i9fHP_0BLmXPezJIDVcvuCXpaaHv5IB4fe49gSiE"
+                            alt="Caffeine Factory"
+                            width={160}
+                            height={48}
+                            className="h-9 sm:h-10 w-auto object-contain"
+                            priority
+                        />
                     </Link>
 
                     {/* Desktop Nav Links */}

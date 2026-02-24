@@ -41,6 +41,8 @@ export default function LocationsSection() {
                             src="https://azmfbhffgqqeqbxmkdqf.supabase.co/storage/v1/object/sign/Images/map.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9kMGEwNjY0NC0xYWI4LTQ1YWYtYWE0NS1kY2QwNDYzZjc2ZjUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJJbWFnZXMvbWFwLnBuZyIsImlhdCI6MTc3MTQyNDk0OSwiZXhwIjoxODAyOTYwOTQ5fQ.blNpFWh9ALhgAkLXFU30nsWM0jxHPfkkK81dUeAROV8"
                             alt="Stylized map of Kathmandu Valley showing Caffeine Factory branch locations"
                             fill
+                            loading="lazy"
+                            decoding="async"
                             sizes="(max-width: 1024px) 100vw, 66vw"
                             className="object-cover opacity-60"
                         />

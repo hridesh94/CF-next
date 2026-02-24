@@ -15,6 +15,23 @@ body {
   -ms-overflow-style: none;
 }
 
+/* Eliminate 300ms tap delay on all interactive elements — fixes INP on mobile */
+a,
+button,
+[role="button"],
+input,
+select,
+textarea {
+  touch-action: manipulation;
+}
+
+/* Enforce minimum 48×48px tap targets for accessibility + mobile-friendliness */
+button,
+[role="button"] {
+  min-height: 44px;
+  min-width: 44px;
+}
+
 html::-webkit-scrollbar {
   display: none;
 }
@@ -43,11 +60,9 @@ html::-webkit-scrollbar {
    Hero Overlay
 ─────────────────────────────────────────── */
 .hero-overlay {
-  background: linear-gradient(
-    180deg,
-    rgba(27, 24, 23, 0.6) 0%,
-    rgba(60, 43, 37, 0.8) 100%
-  );
+  background: linear-gradient(180deg,
+      rgba(27, 24, 23, 0.6) 0%,
+      rgba(60, 43, 37, 0.8) 100%);
 }
 
 /* ───────────────────────────────────────────
@@ -97,14 +112,12 @@ html::-webkit-scrollbar {
    Aurora Text
 ─────────────────────────────────────────── */
 .aurora-text {
-  background: linear-gradient(
-    90deg,
-    #C17F59 0%,
-    #F6F1EB 25%,
-    #D4A373 50%,
-    #C17F59 75%,
-    #F6F1EB 100%
-  );
+  background: linear-gradient(90deg,
+      #C17F59 0%,
+      #F6F1EB 25%,
+      #D4A373 50%,
+      #C17F59 75%,
+      #F6F1EB 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
@@ -135,12 +148,10 @@ html::-webkit-scrollbar {
 }
 
 .shiny-text {
-  background: linear-gradient(
-    120deg,
-    rgba(255, 255, 255, 0.5) 40%,
-    rgba(255, 255, 255, 1) 50%,
-    rgba(255, 255, 255, 0.5) 60%
-  );
+  background: linear-gradient(120deg,
+      rgba(255, 255, 255, 0.5) 40%,
+      rgba(255, 255, 255, 1) 50%,
+      rgba(255, 255, 255, 0.5) 60%);
   background-size: 200% 100%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -152,6 +163,11 @@ html::-webkit-scrollbar {
 }
 
 @keyframes shine {
-  0%   { background-position: 100%; }
-  100% { background-position: -100%; }
+  0% {
+    background-position: 100%;
+  }
+
+  100% {
+    background-position: -100%;
+  }
 }

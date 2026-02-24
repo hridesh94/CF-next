@@ -42,6 +42,8 @@ export default function WhyChooseUs() {
                         src="https://azmfbhffgqqeqbxmkdqf.supabase.co/storage/v1/object/sign/Images/girl.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9kMGEwNjY0NC0xYWI4LTQ1YWYtYWE0NS1kY2QwNDYzZjc2ZjUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJJbWFnZXMvZ2lybC5wbmciLCJpYXQiOjE3NzE4MzY0OTksImV4cCI6MTgwMzM3MjQ5OX0.8rbdGh2UKzd181UDlvH00Q8nKO2bVXJuOHS1W2WmHHQ"
                         alt="Student barista learning on a commercial espresso machine"
                         fill
+                        loading="lazy"
+                        decoding="async"
                         sizes="(max-width: 768px) 100vw, 50vw"
                         className="object-cover"
                     />

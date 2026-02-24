@@ -1,8 +1,8 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter, Playfair_Display } from 'next/font/google';
 import './globals.css';
 
-// ── next/font/google for zero-CLS font loading ──────────────────────────────
+// ── next/font/google — zero-CLS, preloaded automatically ─────────────────────
 const inter = Inter({
     subsets: ['latin'],
     weight: ['300', '400', '500', '600', '800', '900'],
@@ -17,6 +17,14 @@ const playfair = Playfair_Display({
     variable: '--font-playfair',
     display: 'swap',
 });
+
+// ── Viewport (separate export — Next.js 15 requirement) ───────────────────────
+// Fixes "Mobile Friendliness" audit: injects proper viewport meta tag
+export const viewport: Viewport = {
+    width: 'device-width',
+    initialScale: 1,
+    themeColor: '#1b1817',
+};
 
 // ── Root Metadata ─────────────────────────────────────────────────────────────
 export const metadata: Metadata = {
@@ -37,6 +45,10 @@ export const metadata: Metadata = {
         'latte art training Nepal',
         'espresso course Kathmandu',
     ],
+    // Canonical URL — prevents duplicate-content penalties
+    alternates: {
+        canonical: 'https://caffeinefactory.np',
+    },
     openGraph: {
         type: 'website',
         locale: 'en_NP',
@@ -45,16 +57,25 @@ export const metadata: Metadata = {
         title: 'Caffeine Factory | Professional Barista Training in Kathmandu Valley',
         description:
             'Master the craft of coffee at Caffeine Factory. Professional barista training across 4 branches in Kathmandu Valley.',
+        images: [
+            {
+                url: '/og-image.jpg',
+                width: 1200,
+                height: 630,
+                alt: 'Caffeine Factory — Professional Barista Training in Kathmandu Valley',
+            },
+        ],
     },
     twitter: {
         card: 'summary_large_image',
         title: 'Caffeine Factory | Professional Barista Training',
         description: 'Master the craft of coffee. 4 branches across Kathmandu Valley.',
+        images: ['/og-image.jpg'],
     },
     robots: {
         index: true,
         follow: true,
-        googleBot: { index: true, follow: true },
+        googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
     },
 };
 
@@ -94,20 +115,38 @@ export default function RootLayout({
     return (
         <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
             <head>
-                {/* Material Symbols for icons */}
+                {/* ── CDN Preconnects — reduces latency for external resources ── */}
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+                <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+                <link rel="dns-prefetch" href="https://azmfbhffgqqeqbxmkdqf.supabase.co" />
+                <link rel="dns-prefetch" href="https://lh3.googleusercontent.com" />
+
+                {/*
+                 * Material Symbols — loaded non-render-blocking via the
+                 * media="print" trick: browser downloads it without blocking
+                 * paint, then flips to all media once loaded.
+                 * Fixes INP / render-blocking resource issue.
+                 */}
                 <link
-                    rel="preconnect"
-                    href="https://fonts.googleapis.com"
+                    rel="preload"
+                    as="style"
+                    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=optional"
                 />
                 <link
-                    rel="preconnect"
-                    href="https://fonts.gstatic.com"
-                    crossOrigin=""
-                />
-                <link
-                    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+                    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=optional"
                     rel="stylesheet"
+                    media="print"
+                    // @ts-expect-error — onLoad string is valid for this pattern
+                    onLoad="this.media='all'"
                 />
+                <noscript>
+                    <link
+                        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=optional"
+                        rel="stylesheet"
+                    />
+                </noscript>
+
                 {/* Root JSON-LD */}
                 <script
                     type="application/ld+json"
